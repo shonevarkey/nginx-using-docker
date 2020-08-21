@@ -45,7 +45,7 @@ Where, **web** is the name of the container
 
 # Creating docker custom images
 
-We are now creating a sample website **index.html** inside a directory **site-content**
+We are now creating a sample webpage **index.html** inside a directory **site-content**
 
 - ***mkdir site-content***
 - ***cd site-content/***
@@ -63,9 +63,11 @@ We are now creating a sample website **index.html** inside a directory **site-co
 </body>
 </html>
 ```
+A container is created with the sample webpage mounted into  it.
+
 - ***docker run -it --rm -d -p 8080:80 --name web -v /root/site-content/:/usr/share/nginx/html nginx***
 
-1. ***v -> Used to mount the current working directory into the container***
+1. ***v -> Used to bind mount a file/directory from host machine to the container***
 
 ## Creating Dockerfile
 
@@ -83,6 +85,8 @@ Now we are going to build an image from **Dockerfile**
 
 - ***docker build -t webserver .***
 
+1. ***build -t -> builds an image from a Dockerfile in the current directory and tags the image***
+
 Where, **webserver** is the name of the newly created image.
 
 Now we are going to create a container with the newly created custom image.
@@ -90,6 +94,6 @@ Now we are going to create a container with the newly created custom image.
 - ***docker run -it --rm -d -p 8080:80 --name web webserver***
 
 
-
+### THE END
 
 
