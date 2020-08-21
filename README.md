@@ -6,50 +6,50 @@ To setup nginx using docker custom image
 
 The easiest way of installing docker in Centos/RHEL Operating systems:
 
-- $ yum install docker -y
+- ***$ yum install docker -y***
 
 After installation we need to start the docker service
 
-- $ service docker start
+- ***$ service docker start***
 
-Now we are going to pull nginx image from docker hub and create a container named *web*  
+Now we are going to pull nginx image from docker hub and create a container named **web**  
 where **8080** is the host port and **80** is the container port  
 
-- $ docker run -it --rm -d -p 8080:80 --name web nginx
+- ***$ docker run -it --rm -d -p 8080:80 --name web nginx***
 
-###Options used
+### Options used
 
-1. d -> Used to run the container in detach mode.
+1. ***d -> Used to run the container in detach mode.***
 
-2. p -> Used to assign ports.
+2. ***p -> Used to assign ports.***
 
-3. it -> Used to run docker interactively.
+3. ***it -> Used to run docker interactively.***
 
-4. rm -> Used to remove container automatically when it exits.
+4. ***rm -> Used to remove container automatically when it exits.***
 
-5. name -> Used to assign a name to the container.
+5. ***name -> Used to assign a name to the container.***
 
 ## View docker images
 
-- $ docker image ls
+- ***$ docker image ls***
 
 ## View containers
 
-- $ docker container ls
+- ***$ docker container ls***
 
 ## Stop container
 
-- $ docker stop web
+- ***$ docker stop web***
 
-where *web* is the name of the container
+where **web** is the name of the container
 
-#Creating docker custom images
+# Creating docker custom images
 
 We are now creating a sample website **index.html** inside a directory **site-content**
 
-- mkdir site-content
-- cd site-content/
-- vim index.html
+- ***mkdir site-content***
+- ***cd site-content/***
+- ***vim index.html***
 
 ```
 <!doctype html>
@@ -63,6 +63,33 @@ We are now creating a sample website **index.html** inside a directory **site-co
 </body>
 </html>
 ```
+- ***docker run -it --rm -d -p 8080:80 --name web -v /root/site-content/:/usr/share/nginx/html nginx ***
+
+1. ***v -> Used to mount the current working directory into the container***
+
+## Creating Dockerfile
+
+- ***vim Dockerfile***
+
+```
+FROM nginx:latest
+COPY ./index.html /usr/share/nginx/html/index.html
+```
+
+1. **FROM** ***-> Used to set the Base Image for subsequent instructions***
+2. **COPY** ***-> Used to copy files from source to destination***
+
+Now we are going to build an image from **Dockerfile**
+
+- ***docker build -t webserver .***
+
+where **webserver** is the name of the newly created image.
+
+Now we are going to create a container with the newly created custom image.
+
+- ***docker run -it --rm -d -p 8080:80 --name web webserver***
+
+
 
 
 
