@@ -12,8 +12,8 @@ After installation we need to start the docker service
 
 - ***$ service docker start***
 
-Now we are going to pull nginx image from docker hub and create a container named **web**  
-where **8080** is the host port and **80** is the container port  
+Now we are going to pull nginx image from docker hub and create a container **web**  
+Where, **8080** is the host port and **80** is the container port  
 
 - ***$ docker run -it --rm -d -p 8080:80 --name web nginx***
 
@@ -41,7 +41,7 @@ where **8080** is the host port and **80** is the container port
 
 - ***$ docker stop web***
 
-where **web** is the name of the container
+Where, **web** is the name of the container
 
 # Creating docker custom images
 
@@ -63,7 +63,7 @@ We are now creating a sample website **index.html** inside a directory **site-co
 </body>
 </html>
 ```
-- ***docker run -it --rm -d -p 8080:80 --name web -v /root/site-content/:/usr/share/nginx/html nginx ***
+- ***docker run -it --rm -d -p 8080:80 --name web -v /root/site-content/:/usr/share/nginx/html nginx***
 
 1. ***v -> Used to mount the current working directory into the container***
 
@@ -83,7 +83,7 @@ Now we are going to build an image from **Dockerfile**
 
 - ***docker build -t webserver .***
 
-where **webserver** is the name of the newly created image.
+Where, **webserver** is the name of the newly created image.
 
 Now we are going to create a container with the newly created custom image.
 
