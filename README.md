@@ -22,7 +22,6 @@ A container is created with the sample webpage mounted into  it.
 
 - ***docker run -it --rm -d -p 8080:80 --name web -v /root/site-content/:/usr/share/nginx/html nginx***
 
-1. ***v -> Used to bind mount a file/directory from host machine to the container***
 
 ## Creating Dockerfile
 
@@ -33,14 +32,10 @@ FROM nginx:latest
 COPY ./index.html /usr/share/nginx/html/index.html
 ```
 
-1. **FROM** ***-> Used to set the Base Image for subsequent instructions***
-2. **COPY** ***-> Used to copy files from source to destination***
-
 Now we are going to build an image from **Dockerfile**
 
 - ***docker build -t webserver .***
 
-1. ***build -t -> builds an image from a Dockerfile in the current directory and tags the image***
 
 Where, **webserver** is the name of the newly created image.
 
